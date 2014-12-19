@@ -1,0 +1,12 @@
+Very simple ruby application that prompts you for the number of rounds you want to play. Created
+following the tutorials from pragmaticstudio.
+Just enter a number and the game players will randomly find treasures and gain/lose hit points.
+You can play as many times as you want until you enter exit/quit.
+You can also include your own csv files of any players you want to use. The format is 'player_name, health'
+ex: player1, 100
+    player2, 40
+    player3, 50
+
+To use: install the gem
+gem install DemoGame
+Run it from the command line with cmd 'demo_game'

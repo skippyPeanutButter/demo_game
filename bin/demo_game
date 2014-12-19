@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/demo_game/game'
+require_relative '../lib/demo_game/clumsy_player'
+require_relative '../lib/demo_game/berserk_player'
+
+final_fantasy = DemoGame::Game.new("Final Fantasy")
+default_player_file = File.join(File.dirname(__FILE__), 'players.csv')
+final_fantasy.load(ARGV.shift || default_player_file)
+
+klutz = DemoGame::ClumsyPlayer.new("klutz", 105, 3)
+berserker = DemoGame::BerserkPlayer.new("berserker", 50)
+final_fantasy.add_player(klutz)
+final_fantasy.add_player(berserker)
+
+loop do
+  puts "\How many rounds do you want to play: ('quit' to exit)"
+  answer = gets.chomp.downcase
+  case answer
+  when /^\d+$/
+    final_fantasy.play(answer.to_i)
+    final_fantasy.print_stats
+  when "quit", "exit"
+    break
+  else
+    puts "Enter a number or quit..."
+  end
+end
+
+final_fantasy.save("final_fantasy.savegame")
+puts "Game saved..."
